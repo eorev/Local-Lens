@@ -15,6 +15,14 @@ function getLocation() {
   } else {
     console.log("Geolocation is not supported by this browser.");
   }
+  if (global.navigator?.geolocation) {
+    global.navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
 }
 
 export default function Home() {
