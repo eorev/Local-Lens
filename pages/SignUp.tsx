@@ -25,7 +25,7 @@ const SignUp = () => {
             });
 
             alert("Account created successfully.");
-            router.push('/index');
+            router.push('/');
         } catch (error) {
             if (error instanceof Error) { // Type-check the error
                 alert(error.message);
@@ -46,7 +46,7 @@ const SignUp = () => {
             setDoc(userDocRef, {
                 experience: 0,
                 level: 1,
-                username: user.displayName, // Or ask the user for a username
+                username: user.displayName,
             }, { merge: true });
 
             alert("Google account sign-in successful.");
