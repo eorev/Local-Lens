@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
+import '@/styles/global.css'
 
 const ShuffleHero = () => {
     return (
@@ -127,16 +128,16 @@ const ShuffleGrid = () => {
     const timeoutRef = useRef<any>(null);
     const [squares, setSquares] = useState(generateSquares());
 
-    // Wrap shuffleSquares in useCallback
+
     const shuffleSquares = useCallback(() => {
         setSquares(generateSquares());
         timeoutRef.current = setTimeout(shuffleSquares, 3000);
-    }, []); // Empty dependency array since shuffleSquares doesn't depend on props or state
+    }, []);
 
     useEffect(() => {
         shuffleSquares();
         return () => clearTimeout(timeoutRef.current);
-    }, [shuffleSquares]); // Add shuffleSquares to the dependency array
+    }, [shuffleSquares]);
 
     return (
         <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
