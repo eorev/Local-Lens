@@ -44,8 +44,7 @@ const SignUp = () => {
             // Optionally, check if the user is new and save their data to Firestore
             const userDocRef = doc(getFirestore(), "users", user.uid);
             setDoc(userDocRef, {
-                experience: 0,
-                level: 1,
+                profilePicture: null,
                 username: user.displayName,
             }, { merge: true });
 
