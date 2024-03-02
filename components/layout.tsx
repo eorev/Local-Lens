@@ -3,16 +3,7 @@ import Head from "next/head";
 import RevealHeader from "react-revealheader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import userdefault from "@/public/user-default.png";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+
 import Navbar from "./navbar";
 
 type LayoutProps = {
@@ -29,10 +20,6 @@ const Layout: React.FC<LayoutProps> = ({
   return (
     <>
       <Navbar></Navbar>
-      {/* <RevealHeader upColor="red" neutralColor="red">
-        <Navbar></Navbar>
-        <div className="max-w-[1080] p-2 flex place-content-around items-center"></div>
-      </RevealHeader> */}
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
