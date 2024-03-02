@@ -12,6 +12,8 @@ import {
     NavigationMenuTrigger,
     NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
+import { AuthProvider } from '@/contexts/AuthContext';
+
 
 function getLocation() {
     if (global.navigator?.geolocation) {
@@ -28,23 +30,25 @@ function getLocation() {
 export default function Home() {
     getLocation();
     return (
-        <Layout title="Home" description="The homepage of local lens.">
-            <Head>
-                <title>Local Lens</title>
-                <meta name="description" content="Understand your local politicians and how you can leverage your rights to vote." />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <NavigationMenuLink>Link</NavigationMenuLink>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <Hero />
-        </Layout>
+        <AuthProvider>
+            <Layout title="Home" description="The homepage of local lens.">
+                <Head>
+                    <title>Local Lens</title>
+                    <meta name="description" content="Understand your local politicians and how you can leverage your rights to vote." />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <NavigationMenu>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <NavigationMenuLink>Link</NavigationMenuLink>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
+                <Hero />
+            </Layout>
+        </AuthProvider>
     );
 }
