@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
+import RevealHeader from 'react-revealheader';
 
 type LayoutProps = {
     children: ReactNode;
@@ -14,12 +15,17 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
     return (
         <>
+            <RevealHeader upColor='red' neutralColor='red'>
+                    <div className='max-w-[1080] m-auto'>
+                        <h1 className='w-fit m-auto'>Local Lens</h1>
+                    </div>
+            </RevealHeader>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="min-h-screen bg-background text-gray-800">
+            <main className="min-h-screen bg-secondary text-gray-800">
                 <div className="container mx-auto px-4 py-8">
                     {children}
                 </div>
