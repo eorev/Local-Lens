@@ -9,8 +9,8 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({
     children,
-    title = 'Shareable Wordle by eorev',
-    description = 'Create and solve custom Wordle puzzles',
+    title = 'Local Lens',
+    description = 'Get a better understanding of your local politicians and how you can leverage your rights to vote.',
 }) => {
     return (
         <>
