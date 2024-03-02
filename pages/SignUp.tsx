@@ -25,7 +25,7 @@ const SignUp = () => {
             });
 
             alert("Account created successfully.");
-            router.push('/home');
+            router.push('/index');
         } catch (error) {
             if (error instanceof Error) { // Type-check the error
                 alert(error.message);
