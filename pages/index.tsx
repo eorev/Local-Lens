@@ -13,7 +13,20 @@ import {
     NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+        }
+        );
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
 export default function Home() {
+    getLocation();
     return (
         <Layout title="Home" description="The homepage of local lens.">
             <Head>
