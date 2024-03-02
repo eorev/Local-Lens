@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
 import RevealHeader from 'react-revealheader';
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+  } from "@/components/ui/avatar"
 
 type LayoutProps = {
     children: ReactNode;
@@ -16,8 +21,12 @@ const Layout: React.FC<LayoutProps> = ({
     return (
         <>
             <RevealHeader upColor='red' neutralColor='red'>
-                    <div className='max-w-[1080] m-auto'>
-                        <h1 className='w-fit m-auto'>Local Lens</h1>
+                    <div className='max-w-[1080] p-2 flex place-content-center'>
+                        <h1 className='w-fit'>Local Lens</h1>
+                        <Avatar>
+                            <AvatarImage src='https://github.com/shadcn.png'/>
+                            <AvatarFallback>SC</AvatarFallback>
+                        </Avatar>
                     </div>
             </RevealHeader>
             <Head>
