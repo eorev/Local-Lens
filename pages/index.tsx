@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/navigation-menu"
 
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
+    if (global.navigator?.geolocation) {
+        global.navigator.geolocation.getCurrentPosition((position) => {
             console.log("Latitude is :", position.coords.latitude);
             console.log("Longitude is :", position.coords.longitude);
         }
