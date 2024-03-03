@@ -26,18 +26,6 @@ function getAddress(plusCode: any) {
     })
 }
 
-function printAddress() {
-    global.navigator.geolocation.getCurrentPosition((position) => {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);
-        const coordinates = [position.coords.latitude, position.coords.longitude]
-        getPlusCode(coordinates).then((plusCode) => {
-          console.log("TEST", plusCode);
-          getAddress(plusCode)
-      });
-    })
-}   
-
 function getRepresentatives(address: any) {
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
   fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`)
@@ -54,6 +42,18 @@ function getRepresentatives(address: any) {
   })
 }
 
+function fetchAll() {
+  global.navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      const coordinates = [position.coords.latitude, position.coords.longitude]
+      getPlusCode(coordinates).then((plusCode) => {
+        console.log("TEST", plusCode);
+        getAddress(plusCode)
+    });
+  })
+}   
+
 
   return (
     <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto text-copy">
@@ -61,9 +61,6 @@ function getRepresentatives(address: any) {
         <span className="block mb-4 text-xs md:text-sm text-secondary font-medium">
           Unbiased Info at your fingertips
         </span>
-        <button onClick={() => printAddress()} className="text-4xl md:text-6xl font-semibold text-primary">
-        CLICK
-      </button>
         <h3 className="text-4xl md:text-6xl font-semibold text-primary">
           Get Informed.
         </h3>
