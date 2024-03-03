@@ -27,7 +27,7 @@ const ShuffleHero = () => {
           to vote
         </p>
         <Input
-          className="w-1/3 m-auto rounded-lg text-white"
+          className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
           type="email"
           placeholder="Enter Zipcode"
         />
