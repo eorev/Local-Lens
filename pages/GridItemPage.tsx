@@ -34,6 +34,7 @@ export default function GridItemPage() {
                 },
             ],
             temperature: 0,
+            top_p: 0
         });
         console.log(completion.choices[0]);
         if (completion.choices[0].message.content) {
@@ -56,6 +57,7 @@ export default function GridItemPage() {
                 },
             ],
             temperature: 0,
+            top_p: 0
         });
         console.log(completion.choices[0]);
         if (completion.choices[0].message.content) {
