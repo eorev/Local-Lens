@@ -119,7 +119,7 @@ const CTAs = () => {
   const { user } = useAuth();
 
   const handleSignInClick = () => {
-    router.push('/signin'); // Navigate to the Sign-in page
+    router.push('/SignIn'); // Navigate to the Sign-in page
   };
 
   const handleAccountClick = () => {
