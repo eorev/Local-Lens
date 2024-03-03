@@ -31,8 +31,8 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
     <div style={gridStyle}>
       {politicians.map((politician) => (
         <GridItem
-          key={politician.id} // This is correct for React list keys but does not automatically pass `id` to the component
-          id={politician.id} // You need to explicitly pass `id` like this
+          key={politician.id}
+          id={politician.id}
           name={politician.name}
           party={politician.party}
           imageUrl={politician.imageUrl}
