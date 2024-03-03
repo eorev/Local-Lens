@@ -39,7 +39,7 @@ export default function GridItemPage() {
                     content: [
                         {
                             type: "text",
-                            text: `Give me the latest unbiased information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`,
+                            text: `Give me the latest unbiased information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.  Do not mention when your latest information is from at all.`,
                         },
                     ],
                 },
@@ -63,7 +63,7 @@ export default function GridItemPage() {
                     content: [
                         {
                             type: "text",
-                            text: `Give me the latest unbiased news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.`,
+                            text: `Give me the latest unbiased news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.  Do not mention when your latest information is from at all.`,
                         },
                     ],
                 },
@@ -89,7 +89,7 @@ export default function GridItemPage() {
             >
                 <div className="flex justify-center">
                     {imageUrl && typeof imageUrl === 'string' ? (
-                        <Image className="rounded-full" src={imageUrl} alt="Candidate" width={80} height={80} />
+                        <img className="rounded-full" src={imageUrl} alt="Candidate" width={80} height={80} />
                     ) : (
                         <FaUserCircle size={80} style={{ marginBottom: "8px" }} />
                     )}
