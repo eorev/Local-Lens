@@ -91,9 +91,16 @@ export default function GridItemPage() {
       description="Get a better understanding of your local politicians and how you can leverage your rights to vote."
     >
       <div
-        className="grid-item mt-40 space-y-10 bg-white p-10 rounded-lg shadow-lg"
+        className="grid-item mt-40 space-y-10 bg-white p-10 rounded-lg shadow-lg cursor-none"
         style={{ cursor: "pointer", textAlign: "center" }}
       >
+        {imageUrl && (
+          <img className="w-20 rounded-full" src={imageUrl as string} />
+        )}
+        {!imageUrl && (
+          <FaUserCircle size={80} style={{ marginBottom: "8px" }} />
+        )}
+
         <h1 className="text-2xl font-bold" style={{ margin: "0 0 4px 0" }}>
           {candidate}
         </h1>
@@ -104,13 +111,13 @@ export default function GridItemPage() {
           {party}
         </p>
         <p
-          className="text-left ml-[20%] mr-[20%]"
+          className="text-left ml-[10%] mr-[10%]"
           style={{ textIndent: "20px" }}
         >
           {summary}
         </p>
         <p
-          className="text-left ml-[20%] mr-[20%]"
+          className="text-left ml-[10%] mr-[10%]"
           style={{ textIndent: "20px" }}
         >
           {news}
