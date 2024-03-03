@@ -11,6 +11,18 @@ interface GridItemProps {
     onClick: () => void;
 }
 
+const isValidHttpUrl = (string: any) => {
+    let url;
+
+    try {
+        url = new URL(string);
+    } catch (_) {
+        return false;
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:";
+}
+
 const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, office, onClick }) => {
     const imageWidth = 80;
     const imageHeight = 80;
@@ -30,14 +42,14 @@ const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, office, onCl
 
     return (
         <div style={cardStyle} onClick={onClick}>
-            {imageUrl ? (
+            {isValidHttpUrl(imageUrl) ? (
                 <img src={imageUrl} alt={name} style={{ width: `${imageWidth}px`, height: `${imageHeight}px`, objectFit: 'cover', borderRadius: '50%' }} />
             ) : (
                 <FaUserCircle size={imageWidth} style={{ marginBottom: '8px' }} />
             )}
             <h3 style={{ margin: '10px 0 5px 0' }}>{name}</h3>
             <p style={{ margin: '0', color: 'grey' }}>{party}</p>
-            <p style={{ margin: '0', color: '#007BFF' }}>{office}</p> {/* Display the office here */}
+            <p style={{ margin: '0', color: '#007BFF' }}>{office}</p>
         </div>
     );
 };
