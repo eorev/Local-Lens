@@ -10,7 +10,6 @@ import {
 import smallLogo from "@/public/logo-small.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { UserAuth } from "@/contexts/AuthContext";
 
 
 const FlyoutNav = () => {
@@ -34,7 +33,6 @@ const FlyoutNav = () => {
         <Logo />
         <div className="hidden gap-6 lg:flex">
           <Links />
-          <CTAs />
         </div>
         <MobileMenu />
       </div>
@@ -115,38 +113,6 @@ const NavLink = ({
   );
 };
 
-const CTAs = () => {
-  const router = useRouter();
-  const { user } = UserAuth();
-
-  const handleSignInClick = () => {
-    router.push('/SignIn'); // Navigate to the Sign-in page
-  };
-
-  const handleAccountClick = () => {
-    router.push('/account'); // Navigate to the Account page
-  };
-
-  return (
-    <div className="flex items-center gap-3">
-      {user ? (
-        <button onClick={handleAccountClick} className="flex items-center gap-2 rounded-lg border-2 border-black px-4 py-2 font-semibold text-black transition-colors hover:bg-white hover:text-black">
-          {user.photoURL ? (
-            <Image src={user.photoURL} alt="Profile" width={24} height={24} className="rounded-full" />
-          ) : (
-            <FaUserCircle size="24" /> // Use the FaUserCircle icon if no photoURL
-          )}
-          <span>Account</span>
-        </button>
-      ) : (
-        <button onClick={handleSignInClick} className="flex items-center gap-2 rounded-lg border-2 border-black px-4 py-2 font-semibold text-black transition-colors hover:bg-white hover:text-black">
-          <FaUserCircle size="24" />
-          <span>Sign in</span>
-        </button>
-      )}
-    </div>
-  );
-};
 
 const AboutUsContent = () => {
   return (
@@ -415,7 +381,6 @@ const MobileMenu = () => {
               ))}
             </div>
             <div className="flex justify-end bg-neutral-950 p-6">
-              <CTAs />
             </div>
           </motion.nav>
         )}
