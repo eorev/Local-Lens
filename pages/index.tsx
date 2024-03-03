@@ -4,7 +4,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-import { AuthContextProvider } from "@/contexts/AuthContext";
 import { use, useEffect, useState } from "react";
 import { set } from "firebase/database";
 import Grid from "@/components/Grid";
