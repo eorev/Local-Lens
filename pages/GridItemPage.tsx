@@ -38,7 +38,7 @@ export default function GridItemPage() {
                     content: [
                         {
                             type: "text",
-                            text: `Give me the latest unbiased information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`,
+                            text: `Give me the latest unbiased information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Do not under any circumstance include when this information was found. Respond in under 10 sentences.`,
                         },
                     ],
                 },
@@ -62,7 +62,7 @@ export default function GridItemPage() {
                     content: [
                         {
                             type: "text",
-                            text: `Give me the latest unbiased news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.`,
+                            text: `Give me the latest unbiased news about ${candidate}, who is ${office} and a member of the ${party} party. Do not under any circumstance include when this information was found. Summarize in under 10 sentences.`,
                         },
                     ],
                 },
