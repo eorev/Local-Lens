@@ -5,7 +5,6 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import { AuthContextProvider } from "@/contexts/AuthContext";
-import { AuthProvider } from "@/contexts/AuthContext";
 import { use, useEffect, useState } from "react";
 import { set } from "firebase/database";
 import Grid from "@/components/Grid";
@@ -103,25 +102,23 @@ export default function Home() {
   }, []);
 
   return (
-    <AuthProvider>
-      <Layout title="Home" description="The homepage of local lens.">
-        <Head>
-          <title>Local Lens</title>
-          <meta
-            name="description"
-            content="Understand your politicians and how you can leverage your rights to vote."
-          />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <Hero />
-        <Input
-          onChange={(e) => setZipcode(e.target.value)}
-          className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
-          type="email"
-          placeholder="Enter Zipcode"
+    <Layout title="Home" description="The homepage of local lens.">
+      <Head>
+        <title>Local Lens</title>
+        <meta
+          name="description"
+          content="Understand your politicians and how you can leverage your rights to vote."
         />
-        <Grid />
-      </Layout>
-    </AuthProvider>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Hero />
+      <Input
+        onChange={(e) => setZipcode(e.target.value)}
+        className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
+        type="email"
+        placeholder="Enter Zipcode"
+      />
+      <Grid />
+    </Layout>
   );
 }
