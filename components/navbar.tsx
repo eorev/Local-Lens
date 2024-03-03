@@ -52,12 +52,12 @@ const FlyoutNav = () => {
       transition-all duration-300 ease-out lg:px-12
       ${
         scrolled
-          ? "bg-neutral-950 py-3 shadow-xl"
+          ? "bg-neutral-950 py-3 shadow-xl text-white"
           : "bg-neutral-950/0 py-6 shadow-none"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <Logo />
+        <Logo color={`${scrolled ? "white" : "black"}`} />
         <div className="hidden gap-6 lg:flex">
           <Links />
           {!signIn && (
@@ -83,7 +83,7 @@ const FlyoutNav = () => {
   );
 };
 
-const Logo = ({ color = "#252329" }: { color?: string }) => {
+const Logo = ({ color = "white" }: { color?: string }) => {
   // Temp logo from https://logoipsum.com/
   return (
     <div className="flex items-center gap-2">
