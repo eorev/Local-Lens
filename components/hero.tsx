@@ -22,6 +22,7 @@ function getAddress(plusCode: any) {
     .then(response => response.json())
     .then(data => {
         console.log("Address is:", data.results[0].formatted_address)
+        getRepresentatives(data.results[0].formatted_address)
     })
 }
 
@@ -33,9 +34,27 @@ function printAddress() {
         getPlusCode(coordinates).then((plusCode) => {
           console.log("TEST", plusCode);
           getAddress(plusCode)
-      });   
+      });
     })
 }   
+
+function getRepresentatives(address: any) {
+  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+  fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`)
+  .then(response => response.json())
+  .then(data => {
+    // offices
+    data.offices.map((office: String) => {
+      console.log(office)
+    })
+    // officials
+    data.officials.map((official: String) => {
+      console.log(official)
+    })
+  })
+}
+
+
   return (
     <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto text-copy">
       <div>
