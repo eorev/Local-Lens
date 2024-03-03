@@ -1,8 +1,7 @@
-// Grid.tsx
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import GridItem from "./GridItem";
 
-// Define a type for the politician data
+// Extend the Politician interface if needed
 interface Politician {
   id: number;
   name: string;
@@ -10,38 +9,16 @@ interface Politician {
   imageUrl: string;
 }
 
-const Grid: React.FC = () => {
-  const [politicians, setPoliticians] = useState<Politician[]>([]);
-  const [loading, setLoading] = useState(false);
+// Update props to include politicians
+interface GridProps {
+  politicians: Politician[];
+}
 
-  // Use useCallback to memoize the function so it doesn't cause useEffect to re-run
-  const fetchPoliticians = useCallback(async () => {
-    setLoading(true);
-    // Mock fetching logic - replace this with your actual API call
-    const newPoliticians: Politician[] = []; // Ensure this is typed correctly based on your API response
-    setPoliticians((prev) => [...prev, ...newPoliticians]);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    fetchPoliticians();
-  }, [fetchPoliticians]);
-
-  const handleLoadMore = () => {
-    fetchPoliticians();
-  };
-
-  const renderGridItems = () => {
-    return politicians.map((politician) => (
-      <GridItem
-        key={politician.id}
-        name={politician.name}
-        party={politician.party}
-        imageUrl={politician.imageUrl}
-        onClick={() => console.log("Clicked on", politician.name)}
-      />
-    ));
-  };
+const Grid: React.FC<GridProps> = ({ politicians }) => {
+  if (!politicians || politicians.length === 0) {
+    // Render a loading indicator or a placeholder message
+    return <div>Loading...</div>;
+  }
 
   return (
     <div
@@ -51,13 +28,18 @@ const Grid: React.FC = () => {
         gap: "20px",
       }}
     >
-      {renderGridItems()}
-      {loading && <p>Loading...</p>}
-      <button onClick={handleLoadMore} style={{ gridColumn: "1 / -1" }}>
-        Load More
-      </button>
+      {politicians.map((politician) => (
+        <GridItem
+          key={politician.id}
+          name={politician.name}
+          party={politician.party}
+          imageUrl={politician.imageUrl}
+          onClick={() => console.log("Clicked on", politician.name)}
+        />
+      ))}
     </div>
   );
 };
+
 
 export default Grid;
