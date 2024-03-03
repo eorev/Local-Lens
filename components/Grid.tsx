@@ -21,23 +21,28 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(3, 5fr)",
     gap: "20px",
     justifyContent: "space-between",
     padding: "20px",
-    maxWidth: "1200px",
+    maxWidth: "1000px",
     margin: "0 auto",
   };
 
-  function handleClick(candidate: string, party: string, office: string, imageUrl: string) {
+  function handleClick(
+    candidate: string,
+    party: string,
+    office: string,
+    imageUrl: string
+  ) {
     router.push({
-      pathname: '/GridItemPage',
+      pathname: "/GridItemPage",
       query: { candidate, party, office, imageUrl },
     });
-  };
+  }
 
   return (
-    <div style={gridStyle}>
+    <div className="flex flex-wrap justify-center mt-4 m-auto space-y-4">
       {politicians.map((politician) => (
         <GridItem
           key={politician.id}
@@ -46,10 +51,16 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
           party={politician.party}
           imageUrl={politician.imageUrl}
           office={politician.office}
-          onClick={() => handleClick(politician.name, politician.party, politician.office, politician.imageUrl)}
+          onClick={() =>
+            handleClick(
+              politician.name,
+              politician.party,
+              politician.office,
+              politician.imageUrl
+            )
+          }
         />
       ))}
-
     </div>
   );
 };
