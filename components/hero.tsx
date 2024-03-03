@@ -3,12 +3,48 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import "@/styles/global.css";
 
 const ShuffleHero = () => {
+
+  function getPlusCode(coordinates: Number[]) {
+    const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+    console.log("Coordinates:", coordinates);
+    // Return the fetch promise chain
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates[0]},${coordinates[1]}&key=${API_KEY}&result_type=street_address`)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Plus code is:", data.plus_code.compound_code);
+        return data.plus_code.compound_code;
+    });
+  }
+
+function getAddress(plusCode: any) {
+    const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${plusCode}&key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Address is:", data.results[0].formatted_address)
+    })
+}
+
+function printAddress() {
+    global.navigator.geolocation.getCurrentPosition((position) => {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        const coordinates = [position.coords.latitude, position.coords.longitude]
+        getPlusCode(coordinates).then((plusCode) => {
+          console.log("TEST", plusCode);
+          getAddress(plusCode)
+      });   
+    })
+}   
   return (
     <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto text-copy">
       <div>
         <span className="block mb-4 text-xs md:text-sm text-secondary font-medium">
           Unbiased Info at your fingertips
         </span>
+        <button onClick={() => printAddress()} className="text-4xl md:text-6xl font-semibold text-primary">
+        CLICK
+      </button>
         <h3 className="text-4xl md:text-6xl font-semibold text-primary">
           Get Informed.
         </h3>

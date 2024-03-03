@@ -26,7 +26,7 @@ function getLocation() {
 }
 
 export default function Home() {
-  getLocation();
+  
   return (
     <AuthProvider>
       <Layout title="Home" description="The homepage of local lens.">
