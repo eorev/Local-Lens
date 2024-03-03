@@ -26,7 +26,9 @@ export default function Home() {
     console.log("Fetching representatives for address:", address);
 
     try {
-      const response = await fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`);
+      const response = await fetch(
+        `https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`
+      );
       const data = await response.json();
 
       // Maps office names to their respective officials
@@ -38,13 +40,15 @@ export default function Home() {
       });
 
       // Processes the officials' data into a format suitable for the UI
-      const processedOfficials = data.officials.map((official: any, index: number) => ({
-        id: index,
-        name: official.name,
-        party: official.party || 'Unknown', // Default to 'Unknown' if no party is specified
-        imageUrl: official.photoUrl || '', // Use an empty string if no image URL is provided
-        office: officeMap.get(index) || 'Unknown Office', // Default to 'Unknown Office' if no office is found
-      }));
+      const processedOfficials = data.officials.map(
+        (official: any, index: number) => ({
+          id: index,
+          name: official.name,
+          party: official.party || "Unknown", // Default to 'Unknown' if no party is specified
+          imageUrl: official.photoUrl || "", // Use an empty string if no image URL is provided
+          office: officeMap.get(index) || "Unknown Office", // Default to 'Unknown Office' if no office is found
+        })
+      );
 
       setPoliticians(processedOfficials);
     } catch (error) {
@@ -67,7 +71,10 @@ export default function Home() {
     <Layout title="Home" description="The homepage of local lens.">
       <Head>
         <title>Local Lens</title>
-        <meta name="description" content="Understand your politicians and how you can leverage your rights to vote." />
+        <meta
+          name="description"
+          content="Understand your politicians and how you can leverage your rights to vote."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />

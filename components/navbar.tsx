@@ -10,11 +10,35 @@ import {
 import smallLogo from "@/public/logo-small.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
+import { signInWithGoogle } from "@/lib/firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Link from "next/link";
 
 const FlyoutNav = () => {
+  const [signIn, setSignIn] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState("");
   const { scrollY } = useScroll();
+  const router = useRouter();
+
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("User is signed in");
+      setSignIn(true);
+      setPhotoUrl(user.photoURL ? user.photoURL : "");
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      // ...
+    } else {
+      console.log("User is signed out");
+      setSignIn(false);
+      // User is signed out
+      // ...
+    }
+  });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 250 ? true : false);
@@ -24,15 +48,32 @@ const FlyoutNav = () => {
     <nav
       className={`fixed top-0 z-50 w-full px-6 text-black 
       transition-all duration-300 ease-out lg:px-12
-      ${scrolled
+      ${
+        scrolled
           ? "bg-neutral-950 py-3 shadow-xl"
           : "bg-neutral-950/0 py-6 shadow-none"
-        }`}
+      }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Logo />
         <div className="hidden gap-6 lg:flex">
           <Links />
+          {!signIn && (
+            <button onClick={() => signInWithGoogle()}>Sign in</button>
+          )}
+          {signIn && (
+            <button
+              onClick={() => {
+                auth.signOut();
+                router.push("/");
+              }}
+            >
+              Sign out
+            </button>
+          )}
+          <Link href="/account">
+            <img className="rounded-lg w-10" src={photoUrl} />
+          </Link>
         </div>
         <MobileMenu />
       </div>
@@ -112,7 +153,6 @@ const NavLink = ({
     </div>
   );
 };
-
 
 const AboutUsContent = () => {
   return (
@@ -380,8 +420,7 @@ const MobileMenu = () => {
                 </MobileMenuLink>
               ))}
             </div>
-            <div className="flex justify-end bg-neutral-950 p-6">
-            </div>
+            <div className="flex justify-end bg-neutral-950 p-6"></div>
           </motion.nav>
         )}
       </AnimatePresence>
