@@ -5,7 +5,6 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import { use, useEffect, useState } from "react";
-import { set } from "firebase/database";
 import Grid from "@/components/Grid";
 import { Input } from "@/components/ui/input";
 

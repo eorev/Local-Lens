@@ -20,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({
   return (
     <>
       <Navbar></Navbar>
+
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
