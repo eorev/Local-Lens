@@ -9,7 +9,7 @@ interface Politician {
   id: number;
   name: string;
   party: string;
-  imageUrl: string; // Ensure this is correctly populated or handled if missing
+  imageUrl: string;
 }
 
 export default function Home() {
@@ -23,15 +23,13 @@ export default function Home() {
     try {
       const response = await fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`);
       const data = await response.json();
-      console.log("API response:", data);
 
       const processedOfficials = data.officials.map((official: any, index: number) => ({
         id: index,
         name: official.name,
-        party: official.party || 'Unknown', // Default to 'Unknown' if party is not provided
-        imageUrl: official.photoUrl || '', // Handle missing photoUrl
+        party: official.party || 'Unknown',
+        imageUrl: official.photoUrl || '',
       }));
-      console.log("Processed officials:", processedOfficials);
 
       setPoliticians(processedOfficials);
     } catch (error) {
@@ -39,11 +37,13 @@ export default function Home() {
     }
   }
 
+  const updateAddressFromZipcode = (zipcode: string) => {
+    setAddress(zipcode);
+  };
+
   useEffect(() => {
     getRepresentatives();
   }, [address]);
-
-  console.log("Politicians to pass to Grid:", politicians);
 
   return (
     <Layout title="Home" description="The homepage of local lens.">
@@ -55,14 +55,13 @@ export default function Home() {
       <Hero />
       <Input
         onChange={(e) => {
-          const newZipcode = e.target.value;
-          console.log("Zipcode changed to:", newZipcode);
+          const newZipcode = e.target.value.trim();
           setZipcode(newZipcode);
-          // Optionally trigger an address update based on the new zipcode here
+          updateAddressFromZipcode(newZipcode);
         }}
         className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
         type="text"
-        placeholder="Enter State"
+        placeholder="Enter Zipcode"
       />
       <Grid politicians={politicians} />
     </Layout>
