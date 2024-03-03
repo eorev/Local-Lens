@@ -5,8 +5,10 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 export default function Home() {
+    const [address, setAddress] = useState("Newark, DE, USA")
     // Make sure to handle errors appropriately in a real application
 async function getPlusCode(coordinates: Number[]) {
     const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
@@ -27,13 +29,16 @@ async function getAddress(plusCode: String) {
         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${plusCode}&key=${API_KEY}`);
         const data = await response.json();
         console.log("Address is:", data.results[0].formatted_address);
-        await getRepresentatives(data.results[0].formatted_address);
+        if (data.results[0].formatted_address) {
+            setAddress(data.results[0].formatted_address)
+        }
+        await getRepresentatives();
     } catch (error) {
         console.error("Failed to get address:", error);
     }
 }
 
-async function getRepresentatives(address: String) {
+async function getRepresentatives() {
     const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
     try {
         const response = await fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`);
