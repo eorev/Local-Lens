@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen bg-secondary text-gray-800">
+      <main className="min-h-screen bg-[#efeff1] text-gray-800">
         <div className="container mx-auto px-4 py-8">{children}</div>
       </main>
     </>
