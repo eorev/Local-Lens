@@ -86,7 +86,7 @@ export default function Home() {
         }}
         className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
         type="text"
-        placeholder="Enter State"
+        placeholder="Enter City, State, or Both"
       />
       <Grid politicians={politicians} />
     </Layout>
