@@ -1,5 +1,5 @@
+"use client";
 import "@/app/globals.css";
-
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
