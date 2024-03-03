@@ -30,7 +30,23 @@ const GridItem: React.FC<GridItemProps> = ({ candidate, party, office, imageUrl 
                 {
                 role: "user",
                 content: [
-                    { type: "text", text: `Give me the latest information about ${candidate}, ${office}, of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`},
+                    { type: "text", text: `Give me the latest information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`},
+                ],
+                },
+            ],
+            temperature: 0,
+        });
+        console.log(completion.choices[0]);
+    }
+
+    async function getNews(candidate: String, party: String, office: String) {
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4-0125-preview",
+            messages: [
+                {
+                role: "user",
+                content: [
+                    { type: "text", text: `Search the web for the latest news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.`},
                 ],
                 },
             ],
