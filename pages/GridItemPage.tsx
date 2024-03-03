@@ -101,8 +101,18 @@ export default function GridItemPage() {
         <p className="text-lg font-semibold" style={{ margin: 10 }}>
           {party}
         </p>
-        <p className="text-left ml-[20%] mr-[20%]">{summary}</p>
-        <p className="text-left ml-[20%] mr-[20%]">{news}</p>
+        <p
+          className="text-left ml-[20%] mr-[20%]"
+          style={{ textIndent: "20px" }}
+        >
+          {summary}
+        </p>
+        <p
+          className="text-left ml-[20%] mr-[20%]"
+          style={{ textIndent: "20px" }}
+        >
+          {news}
+        </p>
       </div>
     </Layout>
   );
