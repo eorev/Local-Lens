@@ -48,12 +48,18 @@ const GridItem: React.FC<GridItemProps> = ({
         margin: "10px",
     };
 
+    const handleImageError = (e: any) => {
+        e.target.onerror = null; // prevent looping
+        e.target.style.display = 'none'; // hide broken image icon
+    };
+
     return (
         <div style={cardStyle} onClick={onClick}>
             {isValidHttpUrl(imageUrl) ? (
                 <img
                     src={imageUrl}
                     alt={name}
+                    onError={handleImageError}
                     style={{
                         width: `${imageWidth}px`,
                         height: `${imageHeight}px`,

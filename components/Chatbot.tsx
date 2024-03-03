@@ -25,22 +25,28 @@ function Chatbot() {
   }
 
   async function getAnswer(question: string): Promise<string> {
-    // Add a context to the question that guides the AI
+    const instructions = "Respond concisely and structurally in one or two sentences without unnecessary details.";
     const context = "You are a factual assistant providing unbiased information on politicians and voting basics for young voters.";
-    const prompt = `${context}\n\nQuestion: ${question}\nAnswer:`;
+    const prompt = `${context}\n\nInstructions: ${instructions}\n\nQuestion: ${question}\nAnswer:`;
 
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-4-0125-preview",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.5,
+        max_tokens: 60,
         top_p: 1,
       });
-      return completion.choices[0].message.content || "Sorry, I couldn't provide information on that topic.";
+      let response = completion.choices[0].message.content || "Sorry, I couldn't provide information on that topic.";
+
+      response = response.split('. ').slice(0, 2).join('. ');
+
+      return response;
     } catch (error) {
       return `Error: ${(error as Error).message}. Try again in a few minutes.`;
     }
   }
+
 
 
   return (
