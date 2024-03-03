@@ -83,18 +83,22 @@ const FlyoutNav = () => {
   );
 };
 
-const Logo = ({ color = "white" }: { color?: string }) => {
+const Logo = ({ color = "#252329" }: { color?: string }) => {
   // Temp logo from https://logoipsum.com/
   return (
     <div className="flex items-center gap-2">
-      <span className="text-2xl font-bold" style={{ color }}>
-        Local Lens
-      </span>
-
-      <Image width={50} height={50} src={smallLogo.src} alt="logo" />
+      <Link href="/">
+        <span className="flex items-center gap-2 cursor-pointer">
+          <span className="text-2xl font-bold" style={{ color }}>
+            Local Lens
+          </span>
+          <Image width={50} height={50} src={smallLogo.src} alt="logo" />
+        </span>
+      </Link>
     </div>
   );
-};
+ };
+ 
 
 const Links = () => {
   return (
