@@ -10,8 +10,7 @@ export default function GridItemPage() {
     const {candidate, party, office, imageUrl } = router.query
     const [summary, setSummary] = useState('')
     const [news, setNews] = useState('')
-    const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY
-    const openai = new OpenAI({apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
+    const openai = new OpenAI({apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
     
     const { id } = useRouter().query;
