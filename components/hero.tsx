@@ -6,7 +6,6 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 
 const ShuffleHero = () => {
-
   return (
     <section className="mt-20">
       <div>
@@ -27,11 +26,6 @@ const ShuffleHero = () => {
           Understand your local politicians and how you can leverage your rights
           to vote
         </p>
-        <Input
-          className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
-          type="email"
-          placeholder="Enter Zipcode"
-        />
       </div>
     </section>
   );
