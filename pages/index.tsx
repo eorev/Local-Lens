@@ -70,16 +70,18 @@ export default function Home() {
     fetchAll();
 
     return (
-        <Layout title="Home" description="The homepage of local lens.">
-            <Head>
-                <title>Local Lens</title>
-                <meta
-                    name="description"
-                    content="Understand your politicians and how you can leverage your rights to vote."
-                />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Hero />
-        </Layout>
+        <AuthContextProvider>
+            <Layout title="Home" description="The homepage of local lens.">
+                <Head>
+                    <title>Local Lens</title>
+                    <meta
+                        name="description"
+                        content="Understand your politicians and how you can leverage your rights to vote."
+                    />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <Hero />
+            </Layout>
+        </AuthContextProvider>
     );
 }
