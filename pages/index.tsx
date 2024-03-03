@@ -34,7 +34,7 @@ export default function Home() {
           <title>Local Lens</title>
           <meta
             name="description"
-            content="Understand your local politicians and how you can leverage your rights to vote."
+            content="Understand your politicians and how you can leverage your rights to vote."
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
