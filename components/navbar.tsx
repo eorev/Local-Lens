@@ -129,7 +129,7 @@ const CTAs = () => {
   return (
     <div className="flex items-center gap-3">
       {user ? (
-        <button onClick={handleAccountClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+        <button onClick={handleAccountClick} className="flex items-center gap-2 rounded-lg border-2 border-black px-4 py-2 font-semibold text-black transition-colors hover:bg-white hover:text-black">
           {user.photoURL ? (
             <Image src={user.photoURL} alt="Profile" width={24} height={24} className="rounded-full" />
           ) : (
@@ -138,7 +138,7 @@ const CTAs = () => {
           <span>Account</span>
         </button>
       ) : (
-        <button onClick={handleSignInClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+        <button onClick={handleSignInClick} className="flex items-center gap-2 rounded-lg border-2 border-black px-4 py-2 font-semibold text-black transition-colors hover:bg-white hover:text-black">
           <FaUserCircle size="24" />
           <span>Sign in</span>
         </button>
