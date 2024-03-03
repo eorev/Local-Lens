@@ -41,7 +41,7 @@ const AccountPage = () => {
     try {
       await signOut(auth);
       console.log('Signed out successfully');
-      router.push('/signin');
+      router.push('/');
     } catch (error) {
       console.error('Failed to sign out:', error);
     }
