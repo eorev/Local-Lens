@@ -9,6 +9,8 @@ import {
 } from "framer-motion";
 import smallLogo from "@/public/logo-small.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useAuth } from "@/contexts/AuthContext";
 
 const FlyoutNav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -113,12 +115,34 @@ const NavLink = ({
 };
 
 const CTAs = () => {
+  const router = useRouter();
+  const { user } = useAuth();
+
+  const handleSignInClick = () => {
+    router.push('/signin'); // Navigate to the Sign-in page
+  };
+
+  const handleAccountClick = () => {
+    router.push('/account'); // Navigate to the Account page
+  };
+
   return (
     <div className="flex items-center gap-3">
-      <button className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
-        <FaUserCircle />
-        <span>Sign in</span>
-      </button>
+      {user ? (
+        <button onClick={handleAccountClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+          {user.photoURL ? (
+            <Image src={user.photoURL} alt="Profile" width={24} height={24} className="rounded-full" />
+          ) : (
+            <FaUserCircle size="24" /> // Use the FaUserCircle icon if no photoURL
+          )}
+          <span>Account</span>
+        </button>
+      ) : (
+        <button onClick={handleSignInClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+          <FaUserCircle size="24" />
+          <span>Sign in</span>
+        </button>
+      )}
     </div>
   );
 };
