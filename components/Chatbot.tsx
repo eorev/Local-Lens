@@ -25,19 +25,23 @@ function Chatbot() {
   }
 
   async function getAnswer(question: string): Promise<string> {
+    // Add a context to the question that guides the AI
+    const context = "You are a factual assistant providing unbiased information on politicians and voting basics for young voters.";
+    const prompt = `${context}\n\nQuestion: ${question}\nAnswer:`;
+
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-4-0125-preview",
-        messages: [{ role: "user", content: question }],
+        messages: [{ role: "user", content: prompt }],
         temperature: 0.5,
         top_p: 1,
       });
-      return completion.choices[0].message.content || "Sorry, I couldn't understand that.";
+      return completion.choices[0].message.content || "Sorry, I couldn't provide information on that topic.";
     } catch (error) {
-      setIsProcessing(false); // Ensure processing is stopped in case of an error
       return `Error: ${(error as Error).message}. Try again in a few minutes.`;
     }
   }
+
 
   return (
     <>
@@ -46,7 +50,7 @@ function Chatbot() {
         className="fixed bottom-4 right-4 h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center text-white"
         aria-label="Open chat"
       >
-        Chat {/* Replace with SVG or image icon */}
+        Chat
       </button>
       {isOpen && (
         <div className="fixed bottom-16 right-4 w-96 p-4 bg-white border rounded-lg shadow-lg flex flex-col">
@@ -64,13 +68,13 @@ function Chatbot() {
               onKeyPress={(e) => e.key === "Enter" && !isProcessing && handleQuestion()}
               className="w-full p-2 border rounded text-white bg-gray-700"
               placeholder="Ask me anything!"
-              disabled={isProcessing} // Disable input when processing
+              disabled={isProcessing}
             />
           </div>
           <button
             onClick={handleQuestion}
             className={`mt-2 p-2 ${isProcessing ? 'bg-gray-400' : 'bg-blue-500'} text-white rounded`}
-            disabled={isProcessing} // Disable button when processing
+            disabled={isProcessing}
           >
             Send
           </button>
