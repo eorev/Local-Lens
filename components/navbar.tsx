@@ -58,7 +58,7 @@ const FlyoutNav = () => {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between ">
         <Logo color={`${scrolled ? "white" : "black"}`} />
-        <div className="hidden gap-6 lg:flex">
+        <div className=" gap-6 lg:flex">
           {!signIn && (
             <button onClick={() => signInWithGoogle()}>Sign in</button>
           )}
@@ -76,7 +76,6 @@ const FlyoutNav = () => {
             <img className="rounded-lg w-10" src={photoUrl} />
           </Link>
         </div>
-        <MobileMenu />
       </div>
     </nav>
   );
@@ -96,8 +95,7 @@ const Logo = ({ color = "#252329" }: { color?: string }) => {
       </Link>
     </div>
   );
- };
- 
+};
 
 const NavLink = ({
   children,
@@ -212,36 +210,6 @@ const MobileMenuLink = ({
           <FoldContent />
         </motion.div>
       )}
-    </div>
-  );
-};
-
-const MobileMenu = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="block lg:hidden">
-      <button onClick={() => setOpen(true)} className="block text-3xl">
-        <FiMenu />
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            initial={{ x: "100vw" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100vw" }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed left-0 top-0 flex h-screen w-full flex-col bg-white"
-          >
-            <div className="flex items-center justify-between p-6">
-              <Logo color="black" />
-              <button onClick={() => setOpen(false)}>
-                <FiX className="text-3xl text-neutral-950" />
-              </button>
-            </div>
-            <div className="flex justify-end bg-neutral-950 p-6"></div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
