@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Head from "next/head";
 import Hero from "../components/hero";
-import { use, useEffect, useState } from "react";
 import Grid from "@/components/Grid";
 import { Input } from "@/components/ui/input";
 
