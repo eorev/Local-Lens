@@ -17,7 +17,7 @@ const ShuffleHero = () => {
           alt="logo"
         />
         <p className="block mb-4 text-xs text-center md:text-sm font-semibold font-medium">
-          See what's happening in your area and nationwide
+          See what&apos;s happening in your area and nationwide
         </p>
         <h3 className="text-4xl md:text-6xl text-center font-semibold text-primary">
           Get Informed.
