@@ -5,6 +5,7 @@ import Image from "next/image";
 import OpenAI from "openai";
 import { useRouter } from "next/router";
 import Layout from "@/components/layout";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function GridItemPage() {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function GridItemPage() {
   });
 
   const { id } = useRouter().query;
+  console.log(imageUrl);
 
   if (
     typeof candidate === "string" &&
@@ -89,7 +91,7 @@ export default function GridItemPage() {
       description="Get a better understanding of your local politicians and how you can leverage your rights to vote."
     >
       <div
-        className="grid-item mt-24 space-y-10"
+        className="grid-item mt-40 space-y-10 bg-white p-10 rounded-lg shadow-lg"
         style={{ cursor: "pointer", textAlign: "center" }}
       >
         <h1 className="text-2xl font-bold" style={{ margin: "0 0 4px 0" }}>

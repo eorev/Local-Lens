@@ -40,7 +40,7 @@ const FlyoutNav = () => {
         // ...
       }
     });
-  })
+  });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 250 ? true : false);
@@ -56,7 +56,7 @@ const FlyoutNav = () => {
           : "bg-neutral-950/0 py-6 shadow-none"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="mx-auto flex max-w-7xl items-center justify-between ">
         <Logo color={`${scrolled ? "white" : "black"}`} />
         <div className="hidden gap-6 lg:flex">
           <Links />
