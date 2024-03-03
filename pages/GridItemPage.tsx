@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "@/components/layout";
 import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
+import BarLoader from "@/components/barLoader";
 
 export default function GridItemPage() {
     const router = useRouter();
@@ -104,7 +105,12 @@ export default function GridItemPage() {
                     {party}
                 </p>
                 {isLoading ? (
-                    <p>Fetching Unbiased Information...</p>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}> {/* Added marginTop */}
+                        <p>Fetching Unbiased Information...</p>
+                        <div style={{ marginTop: '10px' }}> {/* Added space above BarLoader */}
+                            <BarLoader /> {/* Assuming you can adjust BarLoader size internally */}
+                        </div>
+                    </div>
                 ) : (
                     <>
                         <div className="text-left ml-[10%] mr-[10%]" style={{ textIndent: "20px" }}>
@@ -118,4 +124,4 @@ export default function GridItemPage() {
             </div>
         </Layout>
     );
-}
+}    
