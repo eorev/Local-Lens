@@ -6,8 +6,8 @@ interface Politician {
   name: string;
   party: string;
   imageUrl: string;
+  office: string;
 }
-
 interface GridProps {
   politicians: Politician[];
 }
@@ -19,25 +19,28 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)", // Ensure 3 items per row
-    gap: "20px", // Adjust gap for spacing between items
-    justifyContent: "space-between", // This ensures equal spacing around items
-    padding: "20px", // Add some padding around the grid for better appearance
-    maxWidth: "1200px", // Adjust maximum width to ensure cards are decently sized
-    margin: "0 auto", // Center the grid container
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "20px",
+    justifyContent: "space-between",
+    padding: "20px",
+    maxWidth: "1200px",
+    margin: "0 auto",
   };
 
   return (
     <div style={gridStyle}>
       {politicians.map((politician) => (
         <GridItem
-          key={politician.id}
+          key={politician.id} // This is correct for React list keys but does not automatically pass `id` to the component
+          id={politician.id} // You need to explicitly pass `id` like this
           name={politician.name}
           party={politician.party}
           imageUrl={politician.imageUrl}
+          office={politician.office}
           onClick={() => console.log("Clicked on", politician.name)}
         />
       ))}
+
     </div>
   );
 };

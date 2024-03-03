@@ -10,6 +10,7 @@ interface Politician {
   name: string;
   party: string;
   imageUrl: string;
+  office: string;
 }
 
 export default function Home() {
@@ -24,11 +25,19 @@ export default function Home() {
       const response = await fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${API_KEY}&address=${address}`);
       const data = await response.json();
 
+      const officeMap = new Map();
+      data.offices.forEach((office: any) => {
+        office.officialIndices.forEach((index: number) => {
+          officeMap.set(index, office.name);
+        });
+      });
+
       const processedOfficials = data.officials.map((official: any, index: number) => ({
         id: index,
         name: official.name,
         party: official.party || 'Unknown',
         imageUrl: official.photoUrl || '',
+        office: officeMap.get(index) || 'Unknown Office',
       }));
 
       setPoliticians(processedOfficials);
@@ -43,6 +52,7 @@ export default function Home() {
 
   useEffect(() => {
     getRepresentatives();
+    console.log("Politicians:", politicians)
   }, [address]);
 
   return (
@@ -61,7 +71,7 @@ export default function Home() {
         }}
         className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
         type="text"
-        placeholder="Enter Zipcode"
+        placeholder="Enter State"
       />
       <Grid politicians={politicians} />
     </Layout>
