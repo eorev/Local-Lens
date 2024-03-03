@@ -7,6 +7,9 @@ import {
   useScroll,
   motion,
 } from "framer-motion";
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const FlyoutNav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,11 +23,10 @@ const FlyoutNav = () => {
     <nav
       className={`fixed top-0 z-50 w-full px-6 text-white 
       transition-all duration-300 ease-out lg:px-12
-      ${
-        scrolled
+      ${scrolled
           ? "bg-neutral-950 py-3 shadow-xl"
           : "bg-neutral-950/0 py-6 shadow-none"
-      }`}
+        }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Logo />
@@ -39,7 +41,6 @@ const FlyoutNav = () => {
 };
 
 const Logo = ({ color = "white" }: { color?: string }) => {
-  // Temp logo from https://logoipsum.com/
   return (
     <div className="flex items-center gap-2">
       <span className="text-2xl font-bold" style={{ color }}>
@@ -127,12 +128,34 @@ const NavLink = ({
 };
 
 const CTAs = () => {
+  const router = useRouter();
+  const { user } = useAuth();
+
+  const handleSignInClick = () => {
+    router.push('/signin'); // Navigate to the Sign-in page
+  };
+
+  const handleAccountClick = () => {
+    router.push('/account'); // Navigate to the Account page
+  };
+
   return (
     <div className="flex items-center gap-3">
-      <button className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
-        <FaUserCircle />
-        <span>Sign in</span>
-      </button>
+      {user ? (
+        <button onClick={handleAccountClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+          {user.photoURL ? (
+            <Image src={user.photoURL} alt="Profile" width={24} height={24} className="rounded-full" />
+          ) : (
+            <FaUserCircle size="24" /> // Use the FaUserCircle icon if no photoURL
+          )}
+          <span>Account</span>
+        </button>
+      ) : (
+        <button onClick={handleSignInClick} className="flex items-center gap-2 rounded-lg border-2 border-white px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black">
+          <FaUserCircle size="24" />
+          <span>Sign in</span>
+        </button>
+      )}
     </div>
   );
 };
