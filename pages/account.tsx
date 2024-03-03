@@ -16,7 +16,7 @@ const AccountPage = () => {
 
     const handleSignOut = async () => {
         await logout();
-        router.push('/SignIn');
+        router.push('/');
     };
 
     return (
