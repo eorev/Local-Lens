@@ -115,7 +115,7 @@ export default function Home() {
         onChange={(e) => setZipcode(e.target.value)}
         className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
         type="email"
-        placeholder="Enter Zipcode"
+        placeholder="Enter State"
       />
       <Grid />
     </Layout>
