@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FiMenu, FiArrowRight, FiX, FiChevronDown } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import {
@@ -23,22 +23,24 @@ const FlyoutNav = () => {
 
   const auth = getAuth();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("User is signed in");
-      setSignIn(true);
-      setPhotoUrl(user.photoURL ? user.photoURL : "");
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
-      // ...
-    } else {
-      console.log("User is signed out");
-      setSignIn(false);
-      // User is signed out
-      // ...
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is signed in");
+        setSignIn(true);
+        setPhotoUrl(user.photoURL ? user.photoURL : "");
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        // ...
+      } else {
+        console.log("User is signed out");
+        setSignIn(false);
+        // User is signed out
+        // ...
+      }
+    });
+  })
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 250 ? true : false);

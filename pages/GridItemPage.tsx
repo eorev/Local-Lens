@@ -29,7 +29,7 @@ export default function GridItemPage() {
                 {
                 role: "user",
                 content: [
-                    { type: "text", text: `Give me the latest information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`},
+                    { type: "text", text: `Give me the latest unbiased information about ${candidate}, who is ${office} and a member of the ${party} party. Include this person's age, and their policies. Respond in under 10 sentences.`},
                 ],
                 },
             ],
@@ -51,7 +51,7 @@ export default function GridItemPage() {
                 {
                 role: "user",
                 content: [
-                    { type: "text", text: `Give me the latest news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.`},
+                    { type: "text", text: `Give me the latest unbiased news about ${candidate}, who is ${office} and a member of the ${party} party. Summarize in under 10 sentences.`},
                 ],
                 },
             ],
