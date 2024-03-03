@@ -3,15 +3,17 @@ import { CSSProperties } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 
 interface GridItemProps {
+    id: number;
     name: string;
     party: string;
     imageUrl: string;
+    office: string;
     onClick: () => void;
 }
 
-const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, onClick }) => {
-    const imageWidth = 80; // Adjusted to make the image slightly smaller
-    const imageHeight = 80; // Adjusted to maintain aspect ratio
+const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, office, onClick }) => {
+    const imageWidth = 80;
+    const imageHeight = 80;
 
     const cardStyle: CSSProperties = {
         display: 'flex',
@@ -23,7 +25,7 @@ const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, onClick }) =
         borderRadius: '10px',
         backgroundColor: 'white',
         cursor: 'pointer',
-        width: '350px', // Adjust this value to control the card width
+        width: '350px',
     };
 
     return (
@@ -34,7 +36,8 @@ const GridItem: React.FC<GridItemProps> = ({ name, party, imageUrl, onClick }) =
                 <FaUserCircle size={imageWidth} style={{ marginBottom: '8px' }} />
             )}
             <h3 style={{ margin: '10px 0 5px 0' }}>{name}</h3>
-            <p style={{ margin: 0, color: 'grey' }}>{party}</p>
+            <p style={{ margin: '0', color: 'grey' }}>{party}</p>
+            <p style={{ margin: '0', color: '#007BFF' }}>{office}</p> {/* Display the office here */}
         </div>
     );
 };
