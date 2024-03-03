@@ -17,7 +17,7 @@ const ShuffleHero = () => {
           height={400}
           alt="logo"
         />
-        <p className="block mb-4 text-xs text-center md:text-sm font-medium">
+        <p className="block mb-4 text-xs text-center md:text-sm font-semibold">
           See what&apos;s happening in your area and nationwide
         </p>
         <h3 className="text-4xl md:text-6xl text-center font-semibold text-primary">
@@ -28,7 +28,7 @@ const ShuffleHero = () => {
           to vote
         </p>
         <Input
-          className="w-1/3 m-auto rounded-lg"
+          className="w-1/8 text-center text-lg m-auto rounded-lg text-white"
           type="email"
           placeholder="Enter Zipcode"
         />
