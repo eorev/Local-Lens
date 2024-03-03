@@ -1,5 +1,6 @@
 import React from "react";
 import GridItem from "./GridItem";
+import { useRouter } from "next/router";
 
 interface Politician {
   id: number;
@@ -13,6 +14,7 @@ interface GridProps {
 }
 
 const Grid: React.FC<GridProps> = ({ politicians }) => {
+  const router = useRouter();
   if (!politicians || politicians.length === 0) {
     return <div>Loading...</div>;
   }
@@ -27,6 +29,13 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
     margin: "0 auto",
   };
 
+  function handleClick(candidate: string, party: string, office: string, imageUrl: string) {
+    router.push({
+      pathname: '/GridItemPage',
+      query: { candidate, party, office, imageUrl },
+    });
+  };
+
   return (
     <div style={gridStyle}>
       {politicians.map((politician) => (
@@ -37,7 +46,7 @@ const Grid: React.FC<GridProps> = ({ politicians }) => {
           party={politician.party}
           imageUrl={politician.imageUrl}
           office={politician.office}
-          onClick={() => console.log("Clicked on", politician.name)}
+          onClick={() => handleClick(politician.name, politician.party, politician.office, politician.imageUrl)}
         />
       ))}
 
