@@ -1,7 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  User,
+  signOut,
+  signInWithEmailAndPassword
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCLtmel1ulA_efayl9-i8Xo4sSMjUUP028",
@@ -13,6 +20,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+export function logout() {
+  return signOut(auth);
+}
 
 let analytics;
 // Check if Analytics is supported in the current environment

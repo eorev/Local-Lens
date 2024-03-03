@@ -30,7 +30,7 @@ const SignIn = () => {
             await signInWithPopup(auth, provider);
 
             // Redirect after successful Google sign in
-            router.push('/index'); // Adjust the redirection path as needed
+            router.push('/'); // Adjust the redirection path as needed
         } catch (error) {
             if (error instanceof Error) { // Type-check the error
                 alert(error.message);

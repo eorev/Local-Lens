@@ -1,15 +1,22 @@
-import React, { FormEvent } from 'react'; // Import FormEvent
-import { useAuth } from '@/contexts/AuthContext'; // Adjust the import path as necessary
+import React, { FormEvent, useEffect } from 'react';
+import { AuthContextProvider, UserAuth } from '@/contexts/AuthContext'; // Adjust the import path as necessary
 import Image from 'next/image';
 import { FaUserCircle } from 'react-icons/fa';
+import { useRouter } from 'next/router'; // Import useRouter hook from Next.js
+import { logout } from '@/lib/firebase/firebase';
 
 const AccountPage = () => {
-    const { user } = useAuth();
+    const { user, logout } = UserAuth(); // Destructure logout from UserAuth
+    const router = useRouter(); // Initialize the router
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => { // Type the event parameter
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Process form submission here
         console.log('Form submitted');
+    };
+
+    const handleSignOut = async () => {
+        await logout();
+        router.push('/SignIn');
     };
 
     return (
@@ -30,17 +37,11 @@ const AccountPage = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="displayName" className="block mb-2">Display Name</label>
-                    <input type="text" id="displayName" defaultValue={user?.displayName || ''} className="border px-2 py-1 w-full" />
-                </div>
-                <div>
-                    <label htmlFor="email" className="block mb-2">Email</label>
-                    <input type="email" id="email" defaultValue={user?.email || ''} className="border px-2 py-1 w-full" disabled />
-                </div>
-                {/* Add other form fields as needed */}
+                {/* Form fields */}
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Update</button>
             </form>
+            {/* Sign-out button */}
+            <button onClick={handleSignOut} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition">Sign Out</button>
         </div>
     );
 };

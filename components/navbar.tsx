@@ -10,7 +10,8 @@ import {
 import smallLogo from "@/public/logo-small.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useAuth } from "@/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
+
 
 const FlyoutNav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -116,7 +117,7 @@ const NavLink = ({
 
 const CTAs = () => {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user } = UserAuth();
 
   const handleSignInClick = () => {
     router.push('/SignIn'); // Navigate to the Sign-in page
