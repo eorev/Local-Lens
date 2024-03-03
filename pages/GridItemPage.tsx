@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import "@/app/globals.css";
 import React, { useState, useEffect } from "react";
 import OpenAI from "openai";
@@ -86,9 +87,11 @@ export default function GridItemPage() {
                 className="grid-item mt-40 space-y-10 bg-white p-10 rounded-lg shadow-lg"
                 style={{ textAlign: "center" }}
             >
+
+
                 <div className="flex justify-center">
-                    {imageUrl && typeof imageUrl === 'string' ? (
-                        <img className="rounded-full" src={imageUrl} alt={candidate} width={80} height={80} />
+                    {typeof imageUrl === 'string' ? (
+                        <img className="rounded-full" src={imageUrl} alt={Array.isArray(candidate) ? candidate.join(' ') : candidate || "Candidate"} width={80} height={80} />
                     ) : (
                         <FaUserCircle size={80} style={{ marginBottom: "8px" }} />
                     )}
