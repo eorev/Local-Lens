@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import userdefault from "@/public/user-default.png";
 
 import Navbar from "./navbar";
+import Chatbot from "./Chatbot";
 
 type LayoutProps = {
   children: ReactNode;

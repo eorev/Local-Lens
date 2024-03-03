@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
+import Chatbot from "./Chatbot";
 
 const FlyoutNav = () => {
   const [signIn, setSignIn] = useState(false);
@@ -77,6 +78,7 @@ const FlyoutNav = () => {
           </Link>
         </div>
       </div>
+      <Chatbot />
     </nav>
   );
 };
