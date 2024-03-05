@@ -64,11 +64,10 @@ export default function Home() {
   // useEffect hook to call getRepresentatives whenever the address state changes
   useEffect(() => {
     getRepresentatives();
-    console.log("Politicians:", politicians);
   }, [address]);
 
   return (
-    <Layout title="Home" description="The homepage of local lens.">
+    <Layout title="Home" description="The homepage of Local Lens.">
       <Head>
         <title>Local Lens</title>
         <meta
@@ -88,6 +87,9 @@ export default function Home() {
         type="text"
         placeholder="Enter City, State, or Both"
       />
+      <div className="text-center my-8">
+        <p className="text-lg mb-4">Click on any of the politicians below to learn more about them.</p>
+      </div>
       <Grid politicians={politicians} />
     </Layout>
   );
