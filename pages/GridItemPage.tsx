@@ -90,7 +90,7 @@ export default function GridItemPage() {
 
 
                 <div className="flex justify-center">
-                    {typeof imageUrl === 'string' ? (
+                    {(typeof imageUrl === 'string' && imageUrl !== "") ? (
                         <img className="rounded-full" src={imageUrl} alt={Array.isArray(candidate) ? candidate.join(' ') : candidate || "Candidate"} width={80} height={80} />
                     ) : (
                         <FaUserCircle size={80} style={{ marginBottom: "8px" }} />
