@@ -13,7 +13,7 @@ const teamMembers = [
     },
     {
         name: 'Gage Schuster',
-        role: 'Frontend / Backend Work / Database Integrations',
+        role: 'Database and Auth Integrations / Frontend / Backend Work',
         imageUrl: 'https://media.licdn.com/dms/image/D4E03AQEsYR_HY9xf6g/profile-displayphoto-shrink_400_400/0/1671740477436?e=1715212800&v=beta&t=i0A8zhWEhPPcUPVLNx8G4YtCthnirE3YOZmF4zXyWhw',
         linkedInUrl: 'https://www.linkedin.com/in/gage-schuster-a902081b3/',
     },
@@ -25,7 +25,7 @@ const teamMembers = [
     },
     {
         name: 'Dan Fazzari',
-        role: 'Frontend Work',
+        role: 'Frontend Work / Design',
         imageUrl: 'https://media.licdn.com/dms/image/C4E03AQF3OKy60w7tkg/profile-displayphoto-shrink_400_400/0/1634681800332?e=1715212800&v=beta&t=UJoKh4V5VvOnUsuL-DujJ2wrjEleSXwINHbICPLZWCY',
         linkedInUrl: 'https://www.linkedin.com/in/daniel-fazzari/',
     },
