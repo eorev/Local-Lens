@@ -18,7 +18,7 @@ const teamMembers = [
         linkedInUrl: 'https://www.linkedin.com/in/gage-schuster-a902081b3/',
     },
     {
-        name: 'Dan Deflores',
+        name: 'Dan DeFlores',
         role: 'API Integrations / AI Integrations / Backend / Frontend Work',
         imageUrl: 'https://media.licdn.com/dms/image/D4E03AQECZPUcW-cWzQ/profile-displayphoto-shrink_400_400/0/1677876776806?e=1715212800&v=beta&t=T6E96FHiEfh24B0jUMhs96KOsNsvoJBHEUIRa6hCpm0',
         linkedInUrl: 'https://www.linkedin.com/in/danieldeflores/',
