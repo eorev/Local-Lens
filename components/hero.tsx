@@ -7,26 +7,21 @@ import logo from "@/public/logo.png";
 
 const ShuffleHero = () => {
   return (
-    <section className="mt-20">
-      <div>
-        <Image
-          className="m-auto"
-          src={logo.src}
-          width={400}
-          height={400}
-          alt="logo"
-        />
-        <p className="block mb-4 text-xs text-center md:text-sm font-semibold">
-          See what&apos;s happening in your area and nationwide
-        </p>
-        <h3 className="text-4xl md:text-6xl text-center font-semibold text-primary">
-          Get Informed.
-        </h3>
-        <p className="text-base font-semibold text-center md:text-lg my-4 md:my-6">
-          Understand your local politicians and how you can leverage your rights
-          to vote
-        </p>
-      </div>
+    <section className="mt-20 flex flex-col items-center justify-center">
+      <Image
+        className="m-auto"
+        src={logo}
+        width={400}
+        height={400}
+        alt="logo"
+        priority
+      />
+      <h3 className="text-4xl md:text-6xl text-center font-semibold text-gray-800 my-4">
+        Local Lens
+      </h3>
+      <p className="block mb-6 text-center text-sm font-medium text-gray-600">
+        See what&apos;s happening in your area and nationwide
+      </p>
     </section>
   );
 };
