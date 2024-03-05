@@ -36,7 +36,6 @@ const FlyoutNav = () => {
         }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        {/* Logo Adjustment: Place the Image to the right of the text */}
         <Logo color={`${scrolled ? "white" : "black"}`} />
         <div className="flex gap-6 items-center">
           <Link href="/team">
@@ -75,7 +74,6 @@ const Logo = ({ color = "#252329" }) => {
     <Link href="/">
       <div className="flex items-center gap-2 cursor-pointer">
         <span className="text-2xl font-bold" style={{ color }}>Local Lens</span>
-        {/* Logo Image right next to the text */}
         <Image width={50} height={50} src={smallLogo} alt="logo" unoptimized={true} />
       </div>
     </Link>

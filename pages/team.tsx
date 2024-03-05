@@ -6,10 +6,9 @@ const teamMembers = [
     {
         name: 'Ethan Orevillo',
         role: 'Frontend / Backend Work',
-        imageUrl: '/path/to/image',
-        linkedInUrl: 'https://www.linkedin.com/in/filler',
+        imageUrl: 'https://media.licdn.com/dms/image/D4E03AQFww1P-RWrGyw/profile-displayphoto-shrink_400_400/0/1684346583959?e=1715212800&v=beta&t=EDWRcvpNs_25Q_8cDfJMuzDhVdT9iNZ7fI2QEh_SqPk',
+        linkedInUrl: 'https://www.linkedin.com/in/ethan-orevillo/',
     },
-    // Add more team members as needed
 ];
 
 const Team = () => {
